@@ -34,9 +34,9 @@ get-unity-version:
     - job: get-unity-version
       artifacts: true
 
-.unity_after_script: &unity_after_script
-  after_script:
-    - chmod +x ./ci/return_license.sh && ./ci/return_license.sh
+# .unity_after_script: &unity_after_script
+#   after_script:
+#     - chmod +x ./ci/return_license.sh && ./ci/return_license.sh
 
 .cache: &cache
   cache:
