@@ -115,8 +115,5 @@ namespace WebGLTool
             }
             return scenes.ToArray();
         }
-
-
     }
-
 }
