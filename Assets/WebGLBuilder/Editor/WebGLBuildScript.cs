@@ -2,6 +2,7 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using System.IO.Compression;
 namespace WebGLTool
 {
     public class WebGLBuildScript
@@ -29,6 +30,10 @@ namespace WebGLTool
 
                 // 构建目标平台
                 BuildPipeline.BuildPlayer(scenes, finalBuildPath, BuildTarget.WebGL, BuildOptions.None);
+
+                //// 构建完成后进行压缩
+                //string zipFilePath = finalBuildPath + ".zip";
+                //ZipBuildDirectory(finalBuildPath, zipFilePath);
 
                 Debug.Log("Build completed successfully.");
             }
@@ -112,6 +117,22 @@ namespace WebGLTool
                 }
             }
             return scenes.ToArray();
+        }
+
+        // 将文件夹压缩为.zip文件
+        private static void ZipBuildDirectory(string sourceDirectory, string zipFilePath)
+        {
+            // 确保目标文件路径的文件夹存在
+            string directory = Path.GetDirectoryName(zipFilePath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            // 使用 ZipFile 类将文件夹压缩为 zip 文件
+            //ZipFile.CreateFromDirectory(sourceDirectory, zipFilePath, CompressionLevel.Fastest, false);
+
+            Debug.Log("Zip file created at: " + zipFilePath);
         }
     }
 }
