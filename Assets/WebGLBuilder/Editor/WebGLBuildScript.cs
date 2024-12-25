@@ -17,12 +17,10 @@ namespace WebGLTool
 
                 // 构建相对于项目根目录的输出路径
                 // 尝试从环境变量获取构建路径
-                string customBuildPath = Environment.GetEnvironmentVariable("BUILD_PATH", EnvironmentVariableTarget.Process);
+                string customBuildPath = Environment.GetEnvironmentVariable("BUILD_PATH");
 
                 // 使用环境变量的路径，如果环境变量为空，则使用默认的相对路径
                 string finalBuildPath = string.IsNullOrEmpty(customBuildPath) ? Path.Combine(Directory.GetCurrentDirectory(), "defaultBuildOutput") : customBuildPath;
-
-
 
                 if (!Directory.Exists(finalBuildPath))
                 {

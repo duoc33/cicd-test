@@ -1,0 +1,20 @@
+stages:
+  - build
+
+variables:
+  UNITY_PATH: "D:/Unity/Editor/2021.3.24f1/Editor/Unity.exe"  # Unity编辑器路径
+  PROJECT_PATH: "D:/UnityProject/cicd-test"  # Unity项目路径
+  BUILD_PATH: "D:/BuildTest/BuildByCommand"  # 构建输出路径
+  LOG_PATH: "D:/BuildTest/BuildByCommandLog.txt"  # 构建日志路径
+
+# WebGL 构建任务
+build_webgl:
+  stage: build
+  script:
+    - echo "开始构建WebGL..."
+    - "$UNITY_PATH" -batchmode -quit -projectPath "$PROJECT_PATH" -executeMethod WebGLTool.WebGLBuildScript.BuildProject -logFile "$LOG_PATH"
+  artifacts:
+    paths:
+      - $BUILD_PATH  # 将构建产物存储，GitLab Pages 会使用这个目录
+  only:
+    - main  # 只在 main 分支上触发构建（根据需求调整）
