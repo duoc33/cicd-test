@@ -18,13 +18,16 @@ namespace WebGLTool
         
         public TextAsset WebGLSettings;
 
-        private void Awake()
+        private void OnEnable()
         {
-            WebGLSettings ??= Resources.Load<TextAsset>("WebGLSettings");
+            if (WebGLSettings == null) 
+            {
+                WebGLSettings = Resources.Load<TextAsset>("WebGLSettings");
+            }
 
             if (WebGLSettings == null)
             {
-                Debug.LogError("WebGLSettings or WebGLSettingsForCI Missed");
+                Debug.LogWarning("WebGLSettings Missed");
             }
         }
 
