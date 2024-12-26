@@ -14,9 +14,10 @@ build_webgl:
     - echo "UNITY_PATH is: $UNITY_PATH"
     - echo "PROJECT_PATH is: $PROJECT_PATH"
     - echo "BUILD_PATH is: $BUILD_PATH"
-    - echo "LOG_PATH is: $LOG_PATH"
+    - echo "LOG_PATH is: $UNITY_USERNAME"
+    - echo "LOG_PATH is: $UNITY_PASSWORD"
     - mkdir -p $BUILD_PATH  # 创建构建目录
-    - "$UNITY_PATH" -batchmode -quit -projectPath "$PROJECT_PATH" -executeMethod WebGLTool.WebGLBuildScript.BuildProject -logFile "$LOG_PATH"
+    - "$UNITY_PATH" -batchmode -quit -username UNITY_USERNAME -password UNITY_PASSWORD -projectPath "$PROJECT_PATH" -executeMethod WebGLTool.WebGLBuildScript.BuildProject -logFile "$LOG_PATH"
     - ls -R $BUILD_PATH  # 列出构建路径的内容，确认是否有文件
     - tail -n 100 $LOG_PATH  # 查看最后100行构建日志，检查是否有错误
   artifacts:
